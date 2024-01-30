@@ -1,4 +1,5 @@
 import FullList from "../model/FullList";
+import ListItem from "../model/ListItem";
 
 interface DOMList {
   ul: HTMLUListElement;
@@ -8,6 +9,8 @@ interface DOMList {
 
 export default class ListTemplate implements DOMList {
   ul: HTMLUListElement;
+
+  static instance: ListTemplate = new ListTemplate()
 
   private constructor() {
     this.ul = document.getElementById("listItems") as HTMLUListElement;
@@ -49,7 +52,12 @@ export default class ListTemplate implements DOMList {
 
       button.addEventListener("click", () => {
         fullList.removeItem(item.id);
+        this.render(fullList)
       });
+
+      this.ul.append(li)
+
+
     });
   }
 }
