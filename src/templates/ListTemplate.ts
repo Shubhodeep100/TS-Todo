@@ -1,5 +1,4 @@
 import FullList from "../model/FullList";
-import ListItem from "../model/ListItem";
 
 interface DOMList {
   ul: HTMLUListElement;
@@ -10,7 +9,7 @@ interface DOMList {
 export default class ListTemplate implements DOMList {
   ul: HTMLUListElement;
 
-  static instance: ListTemplate = new ListTemplate()
+  static instance: ListTemplate = new ListTemplate();
 
   private constructor() {
     this.ul = document.getElementById("listItems") as HTMLUListElement;
@@ -28,7 +27,7 @@ export default class ListTemplate implements DOMList {
       li.className = "item";
 
       const check = document.createElement("input") as HTMLInputElement;
-
+      check.type = "checkbox";
       check.id = item.id;
       check.tabIndex = 0;
       check.checked = item.checked;
@@ -52,12 +51,10 @@ export default class ListTemplate implements DOMList {
 
       button.addEventListener("click", () => {
         fullList.removeItem(item.id);
-        this.render(fullList)
+        this.render(fullList);
       });
 
-      this.ul.append(li)
-
-
+      this.ul.append(li);
     });
   }
 }
